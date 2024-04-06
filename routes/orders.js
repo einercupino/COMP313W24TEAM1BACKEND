@@ -58,8 +58,8 @@ router.post("/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL}/success`,
-    cancel_url: `${process.env.CLIENT_URL}/cancel`,
+    success_url: `https://einercupino.github.io/toyhubshop/success`,
+    cancel_url: `https://einercupino.github.io/toyhubshop/cancel`,
   });
 
   res.json({ id: session.id });
