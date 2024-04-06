@@ -22,11 +22,16 @@ function authJwt() {
 }
 
 async function isRevoked(req, payload, done) {
-    if(!payload.isAdmin) {
-        done(null, true)
-    }
+  const { exp } = payload;
+  if (isTokenExpired(exp)) {
+    done(null, true);
+  }
 
-    done();
+  done();
+}
+
+function isTokenExpired(expiration) {
+  return Math.floor(new Date().getTime() / 1000) >= expiration;
 }
 
 
