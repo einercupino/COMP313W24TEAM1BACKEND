@@ -152,9 +152,12 @@ router.get("/get/totalsales", async (req, res) => {
     { $group: { _id: null, totalsales: { $sum: "$totalPrice" } } },
   ]);
 
-  if (!totalSales) {
-    return res.status(400).send("The order sales cannot be generated");
+  if (totalSales.length === 0) {
+    // Handle the case where there are no sales.
+    // For example, send back a totalsales value of 0
+    return res.send({ totalsales: 0 });
   }
+  
   res.send({ totalsales: totalSales.pop().totalsales });
 });
 
