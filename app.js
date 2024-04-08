@@ -48,5 +48,5 @@ mongoose.connect(process.env.CONNECTION_STRING, {
  
 app.listen(3000, () => {
   console.log(api);
-  console.log("Backend server started at (http://localhost:3000/)!");
+  console.log("Backend server started!");
 });
