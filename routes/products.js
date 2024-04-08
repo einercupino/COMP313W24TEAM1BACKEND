@@ -44,21 +44,6 @@ router.get(`/`, async (req, res) => {
     res.send(productList); 
 });
 
-// Search product by name
-router.get(`/search/:name`, async (req, res) => {
-  try {
-    const productList = await Product.find({
-      name: new RegExp(req.params.name, "i"),
-    }).populate("category");
-    if (!productList) {
-      res.status(404).json({ success: false });
-    }
-    res.send(productList);
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-});
-
 router.get(`/:id`, async (req, res) => {
     const product = await Product.findById(req.params.id).populate("category");
  
